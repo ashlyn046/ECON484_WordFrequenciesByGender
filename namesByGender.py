@@ -18,4 +18,4 @@ for name in namesByGender.firstName:
     smallerNames = pd.concat([smallerNames, currnames], ignore_index=True)
 
 smallerNames = smallerNames.drop_duplicates()
-smallerNames.to_csv('/content/gdrive/My Drive/RA/cleanedNames.csv')
+smallerNames.to_csv('/content/gdrive/My Drive/RA/cleanedNames.csv') 
