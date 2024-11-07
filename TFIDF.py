@@ -19,7 +19,6 @@ tfidf_df = pd.DataFrame(tfidf_vector.toarray(), index=wordsDf['processedtext'], 
 
 # Reshaping the data so the words become the rows, and then renaming cols
 tfidf_df = tfidf_df.stack().reset_index()
-# print(tfidf_df)
 tfidf_df = tfidf_df.rename(columns={0:'tfidf', 'processedtext': 'doc','level_1': 'term'})
 print(tfidf_df.head())
 
