@@ -9,7 +9,7 @@ nltk.download('punkt')
 papers = pd.read_csv('/content/gdrive/My Drive/RA/papers.csv')
 authors = pd.read_csv('/content/gdrive/My Drive/RA/authors.csv')
 
-#merging
+# merging
 merged = pd.merge(papers, authors, on="id")
 
 # dropping rows where abstract is missing
@@ -19,7 +19,7 @@ merged = merged[merged.abstract != "Abstract Missing"]
 cols = ['name', 'abstract']
 merged = merged[cols]
 
-#creating a first name column for later merge
+# creating a first name column for later merge
 merged["firstName"] = merged["name"].str.partition(' ')[0]
 
 # Preprocessing the words
@@ -29,10 +29,10 @@ STOP_WORDS = nltk.corpus.stopwords.words()
 # preprocessing text? 
 merged['processedtext'] = merged['abstract'].str.replace('[^\w\s]','') #takes out special characters
 
-#this takes out the stop words
+# this takes out the stop words
 merged['processedtext'] = merged['processedtext'].apply(lambda x: " ".join(x for x in x.split() if x not in STOP_WORDS))
 
-#this conversts everything to lower. x.split() lets you go char by char
+# this conversts everything to lower. x.split() lets you go char by char
 merged['processedtext'] = merged['processedtext'].apply(lambda x: " ".join(x.lower() for x in x.split()))
 
 # stemming all the words (ex changes arguing, argues, argued into argu)
@@ -46,7 +46,7 @@ merged = merged.drop_duplicates()
 namesByGender = pd.read_csv('/content/gdrive/My Drive/RA/name_gender_dataset.csv')
 namesByGender.rename(columns = {'Name':'firstName'}, inplace = True)
 
-#All of the names appear two times, one as female and one as male with probabilities. Here, I drop the ones with a lower probability
+# All of the names appear two times, one as female and one as male with probabilities. Here, I drop the ones with a lower probability
 smallerNames = pd.DataFrame()
 
 for name in namesByGender.firstName:

@@ -3,7 +3,7 @@
 namesByGender = pd.read_csv('/content/gdrive/My Drive/RA/name_gender_dataset.csv')
 namesByGender.rename(columns = {'Name':'firstName'}, inplace = True)
 
-#All of the names appear two times, one as female and one as male with probabilities. Here, I drop the ones with a lower probability
+# All of the names appear two times, one as female and one as male with probabilities. Here, I drop the ones with a lower probability
 smallerNames = pd.DataFrame()
 
 for name in namesByGender.firstName:
