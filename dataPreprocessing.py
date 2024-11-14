@@ -22,17 +22,17 @@ merged = merged[cols]
 # creating a first name column for later merge
 merged["firstName"] = merged["name"].str.partition(' ')[0]
 
-# Preprocessing the words
+# preprocessing the words
 nltk.download('stopwords')
 STOP_WORDS = nltk.corpus.stopwords.words()
 
-# preprocessing text? 
-merged['processedtext'] = merged['abstract'].str.replace('[^\w\s]','') #takes out special characters
+# removing special characters
+merged['processedtext'] = merged['abstract'].str.replace('[^\w\s]','') 
 
-# this takes out the stop words
+# removing stop words
 merged['processedtext'] = merged['processedtext'].apply(lambda x: " ".join(x for x in x.split() if x not in STOP_WORDS))
 
-# this conversts everything to lower. x.split() lets you go char by char
+# this converts everything to lower
 merged['processedtext'] = merged['processedtext'].apply(lambda x: " ".join(x.lower() for x in x.split()))
 
 # stemming all the words (ex changes arguing, argues, argued into argu)
@@ -46,7 +46,7 @@ merged = merged.drop_duplicates()
 namesByGender = pd.read_csv('/content/gdrive/My Drive/RA/name_gender_dataset.csv')
 namesByGender.rename(columns = {'Name':'firstName'}, inplace = True)
 
-# All of the names appear two times, one as female and one as male with probabilities. Here, I drop the ones with a lower probability
+# All of the names appear two times, one as female and one as male with probabilities. Here, we drop the ones with a lower probability
 smallerNames = pd.DataFrame()
 
 for name in namesByGender.firstName:
