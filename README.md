@@ -2,6 +2,8 @@
 
 This research project examines word frequency variations in academic articles written by authors of different genders. Specifically, it aims to analyze the linguistic differences between articles co-authored by men and women versus those authored solely by men, providing insights into potential gender-based disparities in academic language.
 
+This was a collaborative effort. 
+
 ## Project Structure
 
 The repository currently contains three main Python files:
